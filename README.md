@@ -1,16 +1,20 @@
-# React + Vite
+# habit-tracker
+A habit tracker site made as a group project for the Intro To Engineering Project course 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Requirements
+Before starting, make sure you have **VS Code**, **Git** and **Node.js** installed, the project needs them.
 
-Currently, two official plugins are available:
+# Details
+This project uses:
+- HTML – structure
+- CSS – styling
+- JavaScript – logic
+- Firebase – backend (auth, database, hosting, etc.)
+- Node.js – required for packages, Firebase tools, and scripts <-- might need a yt tutorial 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Running the project
+First to open this project youll need the official microsoft's github vscode extension, log in and all and youll be able to **clone** this repo and start working on it.
+Run `npm install` to install any project files used, and now you can run the site with `npm run dev`. **ASK CHRIS FOR THE .ENV FILE BEFORE RUNNING**.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The website code will be in the `src/` folder, most likely in smth like Home.js. Website html is written in .js files.
+Once youre done making changes to the code, commit the code with a nice message :) saying what you changed, and if there are any issues to be fixed, anything else to be done, etc.
