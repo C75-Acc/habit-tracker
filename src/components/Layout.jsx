@@ -22,8 +22,8 @@ function Layout({ children }) {
           <span className="brand">HabitatYourDoor</span>
         </div>
         <div className="navbar-right">
-          <button className="btn-login" onClick={() => navigate('/login')}>Log in</button>
-          <button className="btn-signup" onClick={() => navigate('/login')}>
+          <button className="btn" onClick={() => navigate('/login')}>Log in</button>
+          <button className="btn btn-primary btn-signup" onClick={() => navigate('/login')}>
             <FaUserPlus />
             Sign up
           </button>

@@ -55,10 +55,6 @@
 
 .continue-btn {
   margin-top: 30px;
-  padding: 12px 25px;
-  background: purple;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
+  padding: 14px 40px;
+  font-size: 18px;
 }
