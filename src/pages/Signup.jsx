@@ -1,8 +1,34 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../firebase'
 import './Login.css'
 
 function Signup() {
   const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  async function handleSignup() {
+    setError('')
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    }
+
+    try {
+      setLoading(true)
+      await createUserWithEmailAndPassword(auth, email, password)
+      navigate('/home')
+    } catch (err) {
+      setError(err.message)
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="login-layout">
@@ -15,12 +41,34 @@ function Signup() {
             <input className="login-input" type="text" placeholder="First name" />
             <input className="login-input" type="text" placeholder="Last name" />
           </div>
-          <input className="login-input" type="email" placeholder="Email" />
-          <input className="login-input" type="password" placeholder="Password" />
-          <input className="login-input" type="password" placeholder="Confirm password" />
+          <input
+            className="login-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <input
+            className="login-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <input
+            className="login-input"
+            type="password"
+            placeholder="Confirm password"
+            value={confirmPassword}
+            onChange={e => setConfirmPassword(e.target.value)}
+          />
+          {error && <p style={{ color: '#e57373', fontSize: '14px', margin: 0 }}>{error}</p>}
         </div>
 
-        <button className="login-btn" onClick={() => navigate('/goals-setup')}>Sign up</button>
+        <button className="login-btn" onClick={handleSignup} disabled={loading}>
+          {loading && <span className="btn-spinner" />}
+          Sign up
+        </button>
 
         <div className="login-footer">
           <span style={{ fontSize: '17px', color: '#888' }}>Already have an account?</span>
