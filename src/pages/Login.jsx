@@ -15,7 +15,7 @@ function Login() {
           <input className="login-input" type="password" placeholder="Password" />
         </div>
 
-        <button className="login-btn" onClick={() => navigate('/home')}>Log in</button>
+        <button className="login-btn" onClick={() => navigate('/goals-setup')}>Log in</button>
 
         <div className="login-footer">
           <button className="text-btn">Forgot password?</button>
