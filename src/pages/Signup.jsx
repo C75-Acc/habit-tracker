@@ -20,7 +20,7 @@ function Signup() {
           <input className="login-input" type="password" placeholder="Confirm password" />
         </div>
 
-        <button className="login-btn" onClick={() => navigate('/home')}>Sign up</button>
+        <button className="login-btn" onClick={() => navigate('/goals-setup')}>Sign up</button>
 
         <div className="login-footer">
           <span style={{ fontSize: '17px', color: '#888' }}>Already have an account?</span>
