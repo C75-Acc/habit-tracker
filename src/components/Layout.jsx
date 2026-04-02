@@ -38,7 +38,7 @@ function Layout({ children }) {
               className={`sidebar-btn${location.pathname === path ? ' active' : ''}`}
               onClick={() => navigate(path)}
             >
-              <Icon className="sidebar-icon" />
+              {Icon && <Icon className="sidebar-icon" />}
               {label}
             </button>
           ))}

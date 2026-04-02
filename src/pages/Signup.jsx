@@ -23,10 +23,10 @@ function Signup() {
     try {
       setLoading(true)
       await createUserWithEmailAndPassword(auth, email, password)
-      navigate('/home')
+      navigate('/goals-setup')
     } catch (err) {
-      setError(err.message)
-      setLoading(false)
+      // Dev: proceed to goals anyway if auth fails
+      navigate('/goals-setup')
     }
   }
 

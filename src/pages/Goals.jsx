@@ -2,19 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Goals.css";
 
-const goalsList = [
-  {name:"Fitness", icon: FaDumbbell},
-  {name:"Learning", icon: FaBook},
-  {name:"Health", icon: FaHeart},
-  {name:"Career", icon  : FaBriefcase},
-  {name:"Relationships", icon:FaPeopleGroup},
-  {name:"Mindfulness", icon: FaBrain},
-  {name:"Sleep", icon: FaMoon},
-  {name:"Nutrition", icon: FaApple},
-  {name:"Finance", icon: FaWallet},
-  {name:"Creativity", icon: FaStar},
-];
-
 import {
   FaDumbbell,
   FaBook,
@@ -30,8 +17,21 @@ import {
   FaMoon,
   FaApple,
   FaWallet,
+  FaStar,
 } from "react-icons/fa";
-import { FaPeopleGroup, FaStar } from "react-icons/fa6";
+
+const goalsList = [
+  {name:"Fitness", icon: FaDumbbell},
+  {name:"Learning", icon: FaBook},
+  {name:"Health", icon: FaHeart},
+  {name:"Career",icon: FaBriefcase},
+  {name:"Relationships", icon:FaUsers},
+  {name:"Mindfulness", icon: FaBrain},
+  {name:"Sleep", icon:FaMoon},
+  {name:"Nutrition", icon: FaApple},
+  {name:"Finance", icon: FaWallet},
+  {name:"Creativity", icon: FaStar},
+];
 
 function Goals() {
   const [selected, setSelected] = useState([]);
@@ -55,18 +55,21 @@ function Goals() {
         </p>
 
         <div className="goals-grid">
-          {goalsList.map((goal) => (
-            <div
-              key={goal.name}
-              className={`goal-card ${
-                selected.includes(goal.name) ? "active" : ""
-              }`}
-              onClick={() => toggleGoal(goal.name)}
-            >
-              {goal.icon && <goal.icon className="goal-icon" />}
-              <span>{goal.name}</span>
-            </div>
-          ))}
+          {goalsList.map((goal) => {
+            const Icon = goal.icon
+            return (
+              <div
+                key={goal.name}
+                className={`goal-card ${
+                  selected.includes(goal.name) ? "active" : ""
+                }`}
+                onClick={() => toggleGoal(goal.name)}
+              >
+                {Icon ? <Icon className="goal-icon" /> : null}
+                <span>{goal.name}</span>
+              </div>
+            )
+          })}
         </div>
 
         <button className="btn btn-primary continue-btn" onClick={() => navigate('/home')}>Continue →</button>

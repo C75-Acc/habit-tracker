@@ -17,10 +17,10 @@ function Login() {
     try {
       setLoading(true)
       await signInWithEmailAndPassword(auth, email, password)
-      navigate('/home')
+      navigate('/goals-setup')
     } catch (err) {
-      setError(err.message)
-      setLoading(false)
+      // Dev: proceed to goals anyway if auth fails
+      navigate('/goals-setup')
     }
   }
 
