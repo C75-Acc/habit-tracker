@@ -14,12 +14,14 @@
   padding: 48px;
   max-width: 950px;
   width: 100%;
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.13);
+  box-shadow: 0 16px 30px rgba(180, 135, 190, 0.13);
   text-align: center;
 }
 
 .goals-card h1 {
-  margin-bottom: 8px;
+ font-size: 42px;
+  font-weight: 700;
+  color: #2d2d2d;
 }
 
 .goals-card p {
@@ -36,29 +38,42 @@
 }
 
 .goal-card {
-  background: #eee;
-  padding: 20px;
-  border-radius: 15px;
+  background: #e7dcff;
+  padding: 25px;
+  border-radius: 20px;
   cursor: pointer;
-  transition: 0.3s;
-  border: 2px solid transparent;
+  transition: all 0.25s ease;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap : 10px;
+  position:relative 
+  
+}
+
+.goal-card .icon {
+  font-size: 28px;
+  color: #6c4dd9;
 }
 
 .goal-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
 }
 
 .goal-card.active {
   border: 2px solid purple;
-  background: #e0d4ff;
+  background: #e1c6fe;
 }
 
 .continue-btn {
-  margin-top: 30px;
-  padding: 12px 25px;
-  background: purple;
+  margin-top: 40px;
+  padding: 12px 35px;
+  background: #a079e7;
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 25px;
   cursor: pointer;
+}
+.continue-btn:hover {
+  background: #815eff;
 }
