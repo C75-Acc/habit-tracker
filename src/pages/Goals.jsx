@@ -69,7 +69,7 @@ function Goals() {
           ))}
         </div>
 
-        <button className="continue-btn" onClick={() => navigate('/home')}>Continue →</button>
+        <button className="btn btn-primary continue-btn" onClick={() => navigate('/home')}>Continue →</button>
       </div>
     </div>
   );
