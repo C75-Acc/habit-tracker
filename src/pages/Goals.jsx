@@ -2,19 +2,36 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Goals.css";
 
-
 const goalsList = [
-  "Fitness",
-  "Learning",
-  "Health",
-  "Career",
-  "Relationships",
-  "Mindfulness",
-  "Sleep",
-  "Nutrition",
-  "Finance",
-  "Creativity",
+  {name:"Fitness", icon: FaDumbbell},
+  {name:"Learning", icon: FaBook},
+  {name:"Health", icon: FaHeart},
+  {name:"Career", icon  : FaBriefcase},
+  {name:"Relationships", icon:FaPeopleGroup},
+  {name:"Mindfulness", icon: FaBrain},
+  {name:"Sleep", icon: FaMoon},
+  {name:"Nutrition", icon: FaApple},
+  {name:"Finance", icon: FaWallet},
+  {name:"Creativity", icon: FaStar},
 ];
+
+import {
+  FaDumbbell,
+  FaBook,
+  FaHeart,
+  FaBriefcase,
+  FaUsers,
+  FaBrain,
+  FaBed,
+  FaAppleAlt,
+  FaDollarSign,
+  FaPaintBrush,
+  FaCheck,
+  FaMoon,
+  FaApple,
+  FaWallet,
+} from "react-icons/fa";
+import { FaPeopleGroup, FaStar } from "react-icons/fa6";
 
 function Goals() {
   const [selected, setSelected] = useState([]);
@@ -40,13 +57,14 @@ function Goals() {
         <div className="goals-grid">
           {goalsList.map((goal) => (
             <div
-              key={goal}
+              key={goal.name}
               className={`goal-card ${
-                selected.includes(goal) ? "active" : ""
+                selected.includes(goal.name) ? "active" : ""
               }`}
-              onClick={() => toggleGoal(goal)}
+              onClick={() => toggleGoal(goal.name)}
             >
-              {goal}
+              {goal.icon && <goal.icon className="goal-icon" />}
+              <span>{goal.name}</span>
             </div>
           ))}
         </div>
