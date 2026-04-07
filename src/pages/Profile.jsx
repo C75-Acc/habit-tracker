@@ -11,7 +11,7 @@ function Profile() {
           <h1 className="profile-title">Profile</h1>
           <p className="profile-sub">Manage your account and preferences.</p>
 
-          {/* PROFILE CARD */}
+          
           <div className="profile-card">
 
             <div className="profile-top">
@@ -25,7 +25,7 @@ function Profile() {
 
             <button className="profile-edit-btn">Edit Profile</button>
 
-            {/* FORM */}
+            
             <div className="profile-fields">
 
               <div className="profile-group">
@@ -51,7 +51,7 @@ function Profile() {
            </div>
          </div>
 
-       {/* STATS */}
+       
          <div className="stats-card">
            <h3>Statistics</h3>
 
