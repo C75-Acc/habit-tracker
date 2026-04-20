@@ -27,7 +27,6 @@ function Signup() {
     } catch (err) {
       setLoading(false)
       
-      // Handle specific Firebase error codes
       switch (err.code) {
         case 'auth/email-already-in-use':
           setError('This email is already registered. Please log in.')
