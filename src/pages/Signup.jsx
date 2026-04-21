@@ -25,8 +25,28 @@ function Signup() {
       await createUserWithEmailAndPassword(auth, email, password)
       navigate('/goals-setup')
     } catch (err) {
-      // Dev: proceed to goals anyway if auth fails
-      navigate('/goals-setup')
+      setLoading(false)
+      
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          setError('This email is already registered. Please log in.')
+          break
+        case 'auth/invalid-email':
+          setError('Please enter a valid email address.')
+          break
+        case 'auth/weak-password':
+          setError('Password must be at least 6 characters long.')
+          break
+        case 'auth/network-request-failed':
+          setError('Network error. Please check your internet connection.')
+          break
+        case 'auth/operation-not-allowed':
+          setError('Email/password accounts are not enabled. Contact support.')
+          break
+        default:
+          setError('Failed to create account. Please try again later.')
+          break
+      }
     }
   }
 
@@ -65,7 +85,12 @@ function Signup() {
           {error && <p style={{ color: '#e57373', fontSize: '14px', margin: 0 }}>{error}</p>}
         </div>
 
-        <button className="login-btn" onClick={handleSignup} disabled={loading}>
+        <button 
+          className="login-btn" 
+          onClick={handleSignup} 
+          disabled={loading}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+        >
           {loading && <span className="btn-spinner" />}
           Sign up
         </button>

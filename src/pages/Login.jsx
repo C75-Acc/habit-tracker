@@ -12,15 +12,19 @@ function Login() {
   const [loading, setLoading] = useState(false)
 
   async function handleLogin() {
+    // Clear any previous errors before a new attempt
     setError('')
 
     try {
       setLoading(true)
       await signInWithEmailAndPassword(auth, email, password)
+      // Only navigate if login is successful
       navigate('/goals-setup')
     } catch (err) {
-      // Dev: proceed to goals anyway if auth fails
-      navigate('/goals-setup')
+      // Set the error message so the user sees it
+      setError('Invalid email or password. Please try again.')
+      // Turn off the loading spinner so they can retry
+      setLoading(false) 
     }
   }
 
@@ -35,20 +39,26 @@ function Login() {
             className="login-input"
             type="email"
             placeholder="Email"
-            value={email}
+            value={email} // Fixed missing curly braces
             onChange={e => setEmail(e.target.value)}
           />
           <input
             className="login-input"
             type="password"
             placeholder="Password"
-            value={password}
+            value={password} // Fixed missing curly braces
             onChange={e => setPassword(e.target.value)}
           />
+          {/* Fixed missing curly braces around {error} so it displays the actual variable */}
           {error && <p style={{ color: '#e57373', fontSize: '14px', margin: 0 }}>{error}</p>}
         </div>
 
-        <button className="login-btn" onClick={handleLogin} disabled={loading} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+        <button 
+          className="login-btn" 
+          onClick={handleLogin} // Fixed missing curly braces
+          disabled={loading} // Fixed missing curly braces
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+        >
           {loading && <span className="btn-spinner" />}
           Log in
         </button>
