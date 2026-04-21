@@ -1,0 +1,102 @@
+.goals-container {
+  padding: 40px;
+}
+
+.goals-container h1 {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.subtitle {
+  color: #6b6b6b;
+  margin-bottom: 30px;
+}
+
+
+.card {
+  background: #f4f1ff;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 1000px;
+  box-shadow: 0 8px 25px rgba(124, 77, 255, 0.08);
+  margin-bottom: 30px;
+}
+
+.card h2 {
+  margin-bottom: 5px;
+}
+
+.card-subtitle {
+  color: #6b6b6b;
+  margin-bottom: 20px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #e9e6f7;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #444;
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: #ddd8ff;
+}
+
+
+.chip.active {
+  background: #c8f7dc;
+  color: #1c7c54;
+  border: 2px solid #a6e9c5;
+}
+
+.check {
+  margin-left: 4px;
+  font-weight: bold;
+}
+ 
+.goals-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goals-header h2 {
+  margin-bottom: 5px;
+}
+
+.goals-header p {
+  color: #6b6b6b;
+}
+
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #7c4dff, #6a5cff);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(124, 77, 255, 0.3);
+}

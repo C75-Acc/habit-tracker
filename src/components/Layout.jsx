@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { FaHome, FaUser, FaBullseye, FaBell, FaCog, FaUserPlus } from 'react-icons/fa'
 import '../App.css'
+import { DoorOpen } from "lucide-react";
 
 const navItems = [
   { label: 'Home',      Icon: FaHome,     path: '/home'      },
@@ -18,7 +19,9 @@ function Layout({ children }) {
     <div className="layout">
       <nav className="navbar">
         <div className="navbar-left">
-          <div className="logo-placeholder" />
+          <div className="logo-icon">
+  <DoorOpen size={20} />
+</div>
           <span className="brand">HabitatYourDoor</span>
         </div>
         <div className="navbar-right">
