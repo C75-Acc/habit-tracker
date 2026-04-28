@@ -12,18 +12,14 @@ function Login() {
   const [loading, setLoading] = useState(false)
 
   async function handleLogin() {
-    // Clear any previous errors before a new attempt
     setError('')
 
     try {
       setLoading(true)
       await signInWithEmailAndPassword(auth, email, password)
-      // Only navigate if login is successful
       navigate('/goals-setup')
     } catch (err) {
-      // Set the error message so the user sees it
       setError('Invalid email or password. Please try again.')
-      // Turn off the loading spinner so they can retry
       setLoading(false) 
     }
   }

@@ -1,7 +1,10 @@
 import { useNavigate, useLocation } from 'react-router-dom'
-import { FaHome, FaUser, FaBullseye, FaBell, FaCog, FaUserPlus } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { FaHome, FaUser, FaBullseye, FaBell, FaCog, FaUserPlus, FaSignOutAlt } from 'react-icons/fa'
 import '../App.css'
 import { DoorOpen } from "lucide-react";
+import { auth } from '../firebase'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
 
 const navItems = [
   { label: 'Home',      Icon: FaHome,     path: '/home'      },
@@ -14,6 +17,19 @@ const navItems = [
 function Layout({ children }) {
   const navigate = useNavigate()
   const location = useLocation()
+  const [currentUser, setCurrentUser] = useState(null)
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user)
+    })
+    return () => unsubscribe()
+  }, [])
+
+  const handleLogout = async () => {
+    await signOut(auth)
+    navigate('/login')
+  }
 
   return (
     <div className="layout">
@@ -25,11 +41,25 @@ function Layout({ children }) {
           <span className="brand">HabitatYourDoor</span>
         </div>
         <div className="navbar-right">
-          <button className="btn" onClick={() => navigate('/login')}>Log in</button>
-          <button className="btn btn-primary btn-signup" onClick={() => navigate('/login')}>
-            <FaUserPlus />
-            Sign up
-          </button>
+          {currentUser ? (
+            <>
+              <span className="navbar-username">
+                {currentUser.displayName || currentUser.email}
+              </span>
+              <button className="btn btn-logout" onClick={handleLogout}>
+                <FaSignOutAlt />
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <button className="btn" onClick={() => navigate('/login')}>Log in</button>
+              <button className="btn btn-primary btn-signup" onClick={() => navigate('/signup')}>
+                <FaUserPlus />
+                Sign up
+              </button>
+            </>
+          )}
         </div>
       </nav>
 

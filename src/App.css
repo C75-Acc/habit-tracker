@@ -85,6 +85,27 @@ body {
   gap: 8px;
 }
 
+.navbar-username {
+  font-size: 15px;
+  font-weight: 500;
+  color: #08060d;
+  padding: 0 6px;
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #6232c4;
+  border: 1px solid #6232c4;
+}
+
+.btn-logout:hover {
+  background: #6232c4;
+  color: #fff;
+}
+
 /* Sidebar */
 
 .sidebar {
