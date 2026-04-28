@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
+import { verifyAdminCredentials, setAdminUser } from '../adminAuth'
 import './Login.css'
 
 function Login() {
@@ -16,6 +17,20 @@ function Login() {
 
     try {
       setLoading(true)
+      
+      // Check for admin credentials first
+      if (verifyAdminCredentials(email, password)) {
+        const adminUser = {
+          uid: 'admin-user',
+          email: email,
+          isAdmin: true
+        }
+        setAdminUser(adminUser)
+        navigate('/goals-setup')
+        return
+      }
+
+      // Try Firebase login
       await signInWithEmailAndPassword(auth, email, password)
       navigate('/goals-setup')
     } catch (err) {
