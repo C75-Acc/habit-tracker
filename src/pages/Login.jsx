@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../firebase'
-import { verifyAdminCredentials, setAdminUser } from '../adminAuth'
 import './Login.css'
 
 function Login() {
@@ -18,19 +17,6 @@ function Login() {
     try {
       setLoading(true)
       
-      // Check for admin credentials first
-      if (verifyAdminCredentials(email, password)) {
-        const adminUser = {
-          uid: 'admin-user',
-          email: email,
-          isAdmin: true
-        }
-        setAdminUser(adminUser)
-        navigate('/goals-setup')
-        return
-      }
-
-      // Try Firebase login
       await signInWithEmailAndPassword(auth, email, password)
       navigate('/goals-setup')
     } catch (err) {
@@ -50,24 +36,23 @@ function Login() {
             className="login-input"
             type="email"
             placeholder="Email"
-            value={email} // Fixed missing curly braces
+            value={email} 
             onChange={e => setEmail(e.target.value)}
           />
           <input
             className="login-input"
             type="password"
             placeholder="Password"
-            value={password} // Fixed missing curly braces
+            value={password} 
             onChange={e => setPassword(e.target.value)}
           />
-          {/* Fixed missing curly braces around {error} so it displays the actual variable */}
           {error && <p style={{ color: '#e57373', fontSize: '14px', margin: 0 }}>{error}</p>}
         </div>
 
         <button 
           className="login-btn" 
-          onClick={handleLogin} // Fixed missing curly braces
-          disabled={loading} // Fixed missing curly braces
+          onClick={handleLogin}
+          disabled={loading}
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
         >
           {loading && <span className="btn-spinner" />}
