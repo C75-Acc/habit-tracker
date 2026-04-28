@@ -7,7 +7,7 @@ import GoalsDashboard from './pages/GoalsDashboard'
 import Reminders from './pages/Reminders'
 import Settings from './pages/Settings'
 import Signup from './pages/Signup'
-import ProtectedRoute from './components/ProtectedRoute' // <-- Import the new component
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
