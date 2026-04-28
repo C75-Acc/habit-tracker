@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import "./Goals.css";
 
 import {
@@ -37,12 +39,35 @@ function Goals() {
   const [selected, setSelected] = useState([]);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const checkAlreadySetUp = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists() && userDoc.data().goalsSetupComplete) {
+        navigate('/home', { replace: true });
+      }
+    };
+    checkAlreadySetUp();
+  }, [navigate]);
+
   const toggleGoal = (goal) => {
     if (selected.includes(goal)) {
       setSelected(selected.filter((g) => g !== goal));
     } else {
       setSelected([...selected, goal]);
     }
+  };
+
+  const handleContinue = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      await setDoc(doc(db, 'users', user.uid), {
+        goalsSetupComplete: true,
+        goals: selected,
+      }, { merge: true });
+    }
+    navigate('/home');
   };
 
   return (
@@ -72,7 +97,7 @@ function Goals() {
           })}
         </div>
 
-        <button className="btn btn-primary continue-btn" onClick={() => navigate('/home')}>Continue →</button>
+        <button className="btn btn-primary continue-btn" onClick={handleContinue}>Continue →</button>
       </div>
     </div>
   );

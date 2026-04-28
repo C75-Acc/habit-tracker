@@ -1,6 +1,8 @@
 import Layout from '../components/Layout'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import {
   Dumbbell,
   BookOpen,
@@ -34,15 +36,34 @@ const focusOptions = [
 
 
 function GoalsDashboard() {
-  const [selected, setSelected] = useState(["Fitness", "Sleep"]);
+  const [selected, setSelected] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const toggleOption = (name) => {
-    setSelected((prev) =>
-      prev.includes(name)
-        ? prev.filter((item) => item !== name)
-        : [...prev, name]
-    );
+  useEffect(() => {
+    const fetchGoals = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      if (userDoc.exists() && userDoc.data().goals) {
+        setSelected(userDoc.data().goals);
+      }
+      setLoading(false);
+    };
+    fetchGoals();
+  }, []);
+
+  const toggleOption = async (name) => {
+    const user = auth.currentUser;
+    const updated = selected.includes(name)
+      ? selected.filter((item) => item !== name)
+      : [...selected, name];
+    setSelected(updated);
+    if (user) {
+      await updateDoc(doc(db, 'users', user.uid), { goals: updated });
+    }
   };
+
+  if (loading) return <Layout><div className="goals-container"><p>Loading...</p></div></Layout>;
 
   return (
     <Layout>

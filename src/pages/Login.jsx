@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../firebase'
+import { doc, getDoc } from 'firebase/firestore'
+import { auth, db } from '../firebase'
 import './Login.css'
 
 function Login() {
@@ -17,8 +18,13 @@ function Login() {
     try {
       setLoading(true)
       
-      await signInWithEmailAndPassword(auth, email, password)
-      navigate('/goals-setup')
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const userDoc = await getDoc(doc(db, 'users', userCredential.user.uid))
+      if (userDoc.exists() && userDoc.data().goalsSetupComplete) {
+        navigate('/home')
+      } else {
+        navigate('/goals-setup')
+      }
     } catch (err) {
       setError('Invalid email or password. Please try again.')
       setLoading(false) 

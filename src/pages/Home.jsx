@@ -59,17 +59,17 @@ function Home() {
       <HabitCard
         title="Morning exercise"
         subtitle="45 minutes of cardio or strength training"
-        initialDays={{ Mon: true, Tue: true, Wed: true, Thu: false, Fri: true, Sat: false, Sun: false }}
+        initialDays={{ Mon: true, Tue: false, Wed: false, Thu: false, Fri: false, Sat: false, Sun: false }}
       />
       <HabitCard
         title="Morning exercise"
         subtitle="45 minutes of cardio or strength training"
-        initialDays={{ Mon: true, Tue: true, Wed: true, Thu: false, Fri: true, Sat: false, Sun: false }}
+        initialDays={{ Mon: true, Tue: false, Wed: false, Thu: false, Fri: false, Sat: false, Sun: false }}
       />
       <HabitCard
         title="Morning exercise"
         subtitle="45 minutes of cardio or strength training"
-        initialDays={{ Mon: true, Tue: true, Wed: true, Thu: false, Fri: true, Sat: false, Sun: false }}
+        initialDays={{ Mon: true, Tue: false, Wed: false, Thu: false, Fri: false, Sat: false, Sun: false }}
       />
     </Layout>
   )
